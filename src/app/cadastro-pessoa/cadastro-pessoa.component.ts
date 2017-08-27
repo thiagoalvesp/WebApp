@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { pessoa } from './../models/pessoa';
 
 @Component({
-  selector: 'app-cadastro-pessoa-fisica',
-  templateUrl: './cadastro-pessoa-fisica.component.html',
-  styleUrls: ['./cadastro-pessoa-fisica.component.css']
+  selector: 'app-cadastro-pessoa',
+  templateUrl: './cadastro-pessoa.component.html',
+  styleUrls: ['./cadastro-pessoa.component.css']
 })
 
-export class CadastroPessoaFisicaComponent implements OnInit {
+export class CadastroPessoaComponent implements OnInit {
   pessoa : pessoa = {
     nome :  null,
     cpf  :  null
