@@ -8,6 +8,8 @@ import { AngularFireModule } from 'angularfire2/index';
 import { FirebaseConfig } from "../environments/firebase.config";
 
 import { CadastroPessoaModule } from './cadastro-pessoa/cadastro-pessoa.module';
+import { LoginModule } from './login/login.module';
+import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,9 @@ import { CadastroPessoaModule } from './cadastro-pessoa/cadastro-pessoa.module';
     FormsModule,
     HttpModule,
     CadastroPessoaModule,
-
-    AngularFireModule.initializeApp(FirebaseConfig)
+    LoginModule,
+    AngularFireModule.initializeApp(FirebaseConfig),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
