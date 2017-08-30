@@ -1,9 +1,2 @@
-<h1>Cadastro de pessoa fisica</h1>
-<form #f="ngForm" (ngSubmit)="save(f)">
-    <input type="text" [ngModel]="pessoa.nome" name="nome" placeholder="Nome">
-    <input type="text" [ngModel]="pessoa.cpf" name="cpf" placeholder="CPF">
-    <button type="submit">Gravar</button>
-</form>
-<ul>
-    <li *ngFor="let pessoa of pessoas">{{pessoa.nome}}</li>
-</ul>
+<app-cadastro-pessoa-form></app-cadastro-pessoa-form>
+<app-cadastro-pessoa-lista></app-cadastro-pessoa-lista> 
