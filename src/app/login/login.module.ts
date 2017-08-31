@@ -14,6 +14,3 @@ import {  AngularFireAuth} from 'angularfire2/auth';
   providers: [AngularFireAuth]
 })
 export class LoginModule { }
-
-///https://braziljs.org/blog/simples-aplicacao-real-time-com-angular-4-e-firebase-parte-5/
-//Agora vamos colocar os campos no template html do login-form e escrever o código para ele.
