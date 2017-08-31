@@ -4,6 +4,10 @@ import { pessoa } from './../../models/pessoa';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-cadastro-pessoa-form',
   templateUrl: './cadastro-pessoa-form.component.html',
@@ -17,7 +21,11 @@ export class CadastroPessoaFormComponent implements OnInit {
     cpf  :  null
   }; 
   
-  constructor(private angularFire : AngularFireDatabase) { }
+  constructor(
+    private angularFire : AngularFireDatabase,
+    private afAuth : AngularFireAuth,
+    private router : Router
+  ) { }
   
   
   ngOnInit() {
@@ -36,6 +44,11 @@ export class CadastroPessoaFormComponent implements OnInit {
         //nome: formulario.form.controls.nome.value,
         //cpf: formulario.form.controls.cpf.value
       
+  }
+
+  form_logout(){
+    this.afAuth.auth.signOut();
+    this.router.navigate([""]);
   }
 
 }
