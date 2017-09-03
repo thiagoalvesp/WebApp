@@ -1,10 +1,22 @@
-<h1>
-  Login
-</h1>
-<form #f="ngForm" (submit)="form_login(f)">
-  <input type="text" required ngModel name="email" placeholder="Email">
-  <br />
-  <input type="password" required ngModel name="senha" placeholder="Senha">
-  <br />
-  <button type="subit">Logar</button>
-</form>
+<md-card class="login-card">
+    <md-card-content>
+        <form #f="ngForm" (submit)="form_login(f)">
+            <md-grid-list cols="8" rowHeight="75px">
+                <md-grid-tile [colspan]="8" [rowspan]="1">
+                    <md-form-field>
+                        <input type="text" mdInput ngModel required name="email" placeholder="Email">
+                      </md-form-field>
+                </md-grid-tile>
+                <md-grid-tile [colspan]="8" [rowspan]="1">
+                    <md-form-field>
+                        <input type="password" mdInput ngModel required name="senha" placeholder="Senha">    
+                    </md-form-field>
+                </md-grid-tile>
+                <md-grid-tile [colspan]="8" [rowspan]="1">
+                    <button md-raised-button color="primary" type="submit">Entrar</button>
+                </md-grid-tile>
+            </md-grid-list>
+      </form>      
+    </md-card-content>
+  </md-card>
+

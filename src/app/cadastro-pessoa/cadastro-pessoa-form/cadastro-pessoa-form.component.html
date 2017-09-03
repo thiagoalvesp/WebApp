@@ -1,8 +1,26 @@
-<h1>Cadastro de pessoa fisica</h1>
-<button (click)="form_logout()" type="button">Deslogar</button>
-<form #f="ngForm" (ngSubmit)="save(f)">
-    <input type="text" [ngModel]="pessoa.nome" name="nome" placeholder="Nome">
-    <input type="text" [ngModel]="pessoa.cpf" name="cpf" placeholder="CPF">
-    <button type="submit">Gravar</button>
-</form>
+<button (click)="form_logout()" md-raised-button color="primary" type="button">Gravar</button>
 
+<md-card>
+    <md-card-header>
+        <md-card-title>Shiba Inu</md-card-title>
+    </md-card-header>
+    <md-card-content>
+        <form #f="ngForm" (ngSubmit)="save(f)">
+            <md-grid-list cols="8" rowHeight="75px">
+                <md-grid-tile [colspan]="8" [rowspan]="1">
+                    <md-form-field>
+                        <input type="text" mdInput required [ngModel]="pessoa.nome" name="nome" placeholder="Nome">
+                    </md-form-field>
+                </md-grid-tile>
+                <md-grid-tile [colspan]="8" [rowspan]="1">
+                    <md-form-field>
+                        <input type="text" mdInput required [ngModel]="pessoa.cpf" name="cpf" placeholder="CPF">
+                    </md-form-field>
+                </md-grid-tile>
+                <md-grid-tile [colspan]="8" [rowspan]="1">
+                    <button md-raised-button color="primary" type="submit">Gravar</button>
+                </md-grid-tile>
+            </md-grid-list>
+        </form>
+    </md-card-content>
+</md-card>

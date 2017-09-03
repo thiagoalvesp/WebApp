@@ -1,3 +1,4 @@
+import { MaterialModule } from './../material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,10 +11,11 @@ import { AngularFireDatabase } from 'angularfire2/database';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
   exports: [CadastroPessoaComponent, CadastroPessoaFormComponent, CadastroPessoaListaComponent],
   declarations: [CadastroPessoaComponent, CadastroPessoaFormComponent, CadastroPessoaListaComponent],
-  providers:[AngularFireDatabase]
+  providers: [AngularFireDatabase]
 })
 export class CadastroPessoaModule { }
