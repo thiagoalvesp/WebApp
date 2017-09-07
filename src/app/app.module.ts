@@ -12,6 +12,7 @@ import { AngularFireModule } from 'angularfire2/index';
 import { CadastroPessoaModule } from './cadastro-pessoa/cadastro-pessoa.module';
 import { LoginModule } from './login/login.module';
 import { AppRoutingModule } from './app.routing.module';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { AppRoutingModule } from './app.routing.module';
     AppRoutingModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

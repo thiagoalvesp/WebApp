@@ -1,6 +1,6 @@
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { pessoa } from './../../models/pessoa';
+import { Pessoa } from './../../models/pessoa';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 
@@ -16,39 +16,39 @@ import { Router } from '@angular/router';
 export class CadastroPessoaFormComponent implements OnInit {
 
 
-  pessoa : pessoa = {
+  pessoa: Pessoa = {
     nome :  null,
     cpf  :  null
-  }; 
-  
+  };
+
   constructor(
-    private angularFire : AngularFireDatabase,
-    private afAuth : AngularFireAuth,
-    private router : Router
+    private angularFire: AngularFireDatabase,
+    private afAuth: AngularFireAuth,
+    private router: Router
   ) { }
-  
-  
+
+
   ngOnInit() {
-    
+
   }
 
   save(f : NgForm){
-      
-      this.angularFire.list("pessoas").push({
+
+      this.angularFire.list('pessoas').push({
         nome : f.form.controls.nome.value,
         cpf : f.form.controls.cpf.value
       }).then( (t : any) => console.log('dados gravados: '+ t.key) ),
       (e : any) => console.log(e.message);
 
         f.controls.nome.setValue('');
-        //nome: formulario.form.controls.nome.value,
+        // nome: formulario.form.controls.nome.value,
         //cpf: formulario.form.controls.cpf.value
-      
+
   }
 
   form_logout(){
     this.afAuth.auth.signOut();
-    this.router.navigate([""]);
+    this.router.navigate(['']);
   }
 
 }
