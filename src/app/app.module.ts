@@ -1,4 +1,3 @@
-import { MaterialModule } from './material.module';
 import { FirebaseConfig } from './../environments/firebase.config';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,25 +11,29 @@ import { AngularFireModule } from 'angularfire2/index';
 import { CadastroPessoaModule } from './cadastro-pessoa/cadastro-pessoa.module';
 import { LoginModule } from './login/login.module';
 import { AppRoutingModule } from './app.routing.module';
-import { AuthService } from './services/auth.service';
+
+import { MapaComponent } from './mapa/mapa.component';
+import { AuthService } from './shared/services/auth.service';
+
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapaComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-    CadastroPessoaModule,
-    LoginModule,
     AngularFireModule.initializeApp(FirebaseConfig),
     AppRoutingModule,
-    MaterialModule
+    LoginModule,
+    CadastroPessoaModule
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

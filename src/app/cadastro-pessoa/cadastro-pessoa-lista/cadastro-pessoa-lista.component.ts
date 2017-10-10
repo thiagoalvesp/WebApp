@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { Pessoa } from './../../models/pessoa';
+import { Pessoa } from '../../shared/models/pessoa';
+
 
 @Component({
   selector: 'app-cadastro-pessoa-lista',

@@ -1,11 +1,12 @@
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Pessoa } from './../../models/pessoa';
+
 
 import { AngularFireDatabase } from 'angularfire2/database';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { Pessoa } from '../../shared/models/pessoa';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class CadastroPessoaFormComponent implements OnInit {
 
   }
 
-  save(f : NgForm){
+ /* save(f : NgForm){
 
       this.angularFire.list('pessoas').push({
         nome : f.form.controls.nome.value,
@@ -45,10 +46,6 @@ export class CadastroPessoaFormComponent implements OnInit {
         //cpf: formulario.form.controls.cpf.value
 
   }
-
-  form_logout(){
-    this.afAuth.auth.signOut();
-    this.router.navigate(['']);
-  }
+*/
 
 }

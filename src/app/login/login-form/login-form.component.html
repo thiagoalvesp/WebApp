@@ -1,22 +1,25 @@
-<md-card class="login-card">
-    <md-card-content>
-        <form #f="ngForm" (submit)="form_login(f)">
-            <md-grid-list cols="8" rowHeight="75px">
-                <md-grid-tile [colspan]="8" [rowspan]="1">
-                    <md-form-field>
-                        <input type="text" mdInput ngModel required name="email" placeholder="Email">
-                      </md-form-field>
-                </md-grid-tile>
-                <md-grid-tile [colspan]="8" [rowspan]="1">
-                    <md-form-field>
-                        <input type="password" mdInput ngModel required name="senha" placeholder="Senha">    
-                    </md-form-field>
-                </md-grid-tile>
-                <md-grid-tile [colspan]="8" [rowspan]="1">
-                    <button md-raised-button color="primary" type="submit">Entrar</button>
-                </md-grid-tile>
-            </md-grid-list>
-      </form>      
-    </md-card-content>
-  </md-card>
-
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div id="centro" class="panel panel-default">
+        <div class="panel-body">
+            <div class="input-group" [ngClass]="aplicaCssErro('email')">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="email" type="email" class="form-control" formControlName="email" placeholder="Email">
+            </div>
+            <div class="input-group" [ngClass]="aplicaCssErro('senha')">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="password" type="password" class="form-control" formControlName="senha" placeholder="Senha">
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="btn-group">
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-log-in"></span> Entrar
+                </button>
+                <button type="button" class="btn btn-default">Cadastrar-se</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div id="message" *ngFor="let alert of alerts">
+<alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" dismissible="true">{{ alert.msg }}</alert>
+</div>

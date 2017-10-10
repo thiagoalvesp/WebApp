@@ -1,10 +1,10 @@
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-
-
+import { AuthService } from '../../shared/services/auth.service';
+import { Alert } from '../../shared/models/alert';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-login-form',
@@ -13,23 +13,47 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor(private authSvc: AuthService , private router: Router) { }
+  formulario: FormGroup;
+  alerts: Alert[] = [];
+
+  constructor(
+    private authSvc: AuthService,
+    private formBuilder: FormBuilder
+    ) { }
+
   ngOnInit() {
+    this.formulario = this.formBuilder.group({
+        email: [null, Validators.required],
+        senha: [null, Validators.required]
+    });
   }
 
-  form_login(f: NgForm) {
-     if (!f.valid) {
-        return;
-     }
-     const msgRet: string = this.authSvc.login(f.controls.email.value, f.controls.senha.value);
-     if (msgRet === 'ok') {
-      this.router.navigate(['/cadastro']);
-     }else {
-          // Mostrar a mensagem na tela
-     }
+  onSubmit() {
 
-     f.controls.email.setValue('');
-     f.controls.senha.setValue('');
+    if (!this.formulario.valid) {
+      return;
+    }
+
+    this.authSvc.login(this.formulario.controls.email.value, this.formulario.controls.senha.value);
+    // o retorno das mensagens do firebase e no catch da promise não consegui fazer o emit funcionar
+    // pois ele não pertence a scopo do catch
+    // this.alerts.push(new Alert('danger', 'Não possivel realizar o acesso! Verifique o email e senha e tente novamente!'));
+
+  }
+
+
+  verificaValidTouched(campo: string) {
+    return (
+      !this.formulario.get(campo).valid &&
+      (this.formulario.get(campo).touched || this.formulario.get(campo).dirty)
+    );
+  }
+
+  aplicaCssErro(campo: string) {
+    return {
+      'has-error': this.verificaValidTouched(campo),
+      'has-feedback': this.verificaValidTouched(campo)
+    };
   }
 
 }
