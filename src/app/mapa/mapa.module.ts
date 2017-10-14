@@ -4,14 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 
 import { AngularFireDatabase } from 'angularfire2/database';
+import { MapaRoutingModule } from './mapa.routing.module';
+import { MapaComponent } from './mapa.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    MapaRoutingModule
   ],
-  exports: [],
-  declarations: [],
+  exports: [MapaComponent],
+  declarations: [MapaComponent],
   providers: [AngularFireDatabase]
 })
-export class CadastroPessoaModule { }
+export class MapaModule { }

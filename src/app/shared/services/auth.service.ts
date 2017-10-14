@@ -9,24 +9,22 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthService {
 
-  user: Observable<firebase.User>;
+  authState: any = null;
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router
-  ) {
-    this.user = afAuth.authState;
-  }
+  ) {}
 
 
   login(email: string, senha: string): void {
 
     this.afAuth.auth.signInWithEmailAndPassword(email, senha)
-      .then( onResolve => {
+      .then( user => {
+        this.authState = user;
         this.mostrarMenuEmitter.emit(true);
-        this.user = onResolve;
-        this.router.navigate(['/mapa']);
+        this.router.navigate(['/home']);
       })
       .catch(function (onReject: any, ) {
         console.log(onReject.message);
@@ -40,4 +38,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  usuarioEstaAutenticado() {
+    return this.authState !== null;
+  }
 }

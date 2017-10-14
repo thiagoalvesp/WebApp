@@ -10,11 +10,11 @@ import { Pessoa } from '../../shared/models/pessoa';
 
 
 @Component({
-  selector: 'app-cadastro-pessoa-form',
-  templateUrl: './cadastro-pessoa-form.component.html',
-  styleUrls: ['./cadastro-pessoa-form.component.css']
+  selector: 'app-pessoas-form',
+  templateUrl: './pessoas-form.component.html',
+  styleUrls: ['./pessoas-form.component.css']
 })
-export class CadastroPessoaFormComponent implements OnInit {
+export class PessoasFormComponent implements OnInit {
 
 
   pessoa: Pessoa = {
