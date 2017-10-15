@@ -16,10 +16,9 @@
                     <span class="glyphicon glyphicon-log-in"></span> Entrar
                 </button>
                 <button type="button" class="btn btn-default">Cadastrar-se</button>
+                <button type="button" class="btn btn-default" (click)="recuperarSenha()">Esqueceu a senha?</button>
             </div>
         </div>
     </div>
 </form>
-<div id="message" *ngFor="let alert of alerts">
-<alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" dismissible="true">{{ alert.msg }}</alert>
-</div>
+

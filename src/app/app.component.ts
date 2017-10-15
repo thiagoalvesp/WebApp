@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './shared/services/auth.service';
+import { AuthService } from './services/auth.service';
+import { Alert } from './models/alert';
+import { MsgService } from './services/msg.service';
+
 
 @Component({
   selector: 'app-root',
@@ -9,8 +12,9 @@ import { AuthService } from './shared/services/auth.service';
 export class AppComponent implements OnInit {
 
   mostrarMenu = false;
+  alerts: Alert[] = [];
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private msgService: MsgService) {
 
   }
 
@@ -21,6 +25,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
    this.authService.mostrarMenuEmitter.subscribe(
      mostrar => this.mostrarMenu = mostrar
+   );
+   this.msgService.alertEmitter.subscribe(
+      alert => { this.alerts.push(alert); }
    );
 
   }

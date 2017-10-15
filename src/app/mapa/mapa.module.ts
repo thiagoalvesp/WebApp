@@ -1,20 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-
-import { AngularFireDatabase } from 'angularfire2/database';
+import { SharedModule } from '../shared/shared.module';
 import { MapaRoutingModule } from './mapa.routing.module';
 import { MapaComponent } from './mapa.component';
 
+
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
+    SharedModule,
     MapaRoutingModule
   ],
-  exports: [MapaComponent],
   declarations: [MapaComponent],
-  providers: [AngularFireDatabase]
+  providers: []
 })
 export class MapaModule { }

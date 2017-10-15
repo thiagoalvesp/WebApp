@@ -2,9 +2,9 @@ import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
-import { AuthService } from '../../shared/services/auth.service';
-import { Alert } from '../../shared/models/alert';
 import { Subscription } from 'rxjs/Subscription';
+import { AuthService } from '../../services/auth.service';
+import { MsgService } from '../../services/msg.service';
 
 @Component({
   selector: 'app-login-form',
@@ -14,11 +14,11 @@ import { Subscription } from 'rxjs/Subscription';
 export class LoginFormComponent implements OnInit {
 
   formulario: FormGroup;
-  alerts: Alert[] = [];
 
   constructor(
     private authSvc: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private msgService: MsgService
     ) { }
 
   ngOnInit() {
@@ -41,6 +41,13 @@ export class LoginFormComponent implements OnInit {
 
   }
 
+  recuperarSenha() {
+    if (!this.formulario.controls.email.valid) {
+      this.msgService.showAlert('warning', 'Por favor preencha o email.');
+      return;
+    }
+    this.authSvc.recuperarSenha(this.formulario.controls.email.value);
+  }
 
   verificaValidTouched(campo: string) {
     return (

@@ -2,11 +2,8 @@ import { FirebaseConfig } from './../environments/firebase.config';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule} from '@angular/http';
 import { AngularFireModule } from 'angularfire2/index';
-
-
+import { AlertModule } from 'ngx-bootstrap';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
@@ -16,10 +13,12 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { LoginModule } from './login/login.module';
 import { AppRoutingModule } from './app.routing.module';
 
-import { AuthService } from './shared/services/auth.service';
 import { MapaGuard } from './guards/mapa.guard';
 import { PessoasGuard } from './guards/pessoa.guard';
+
 import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './services/auth.service';
+import { MsgService } from './services/msg.service';
 
 
 @NgModule({
@@ -31,15 +30,15 @@ import { AuthGuard } from './guards/auth.guard';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
-    HttpModule,
     AngularFireModule.initializeApp(FirebaseConfig),
+    AlertModule.forRoot(),
     AppRoutingModule,
     LoginModule,
     PessoasModule,
     MapaModule
   ],
   providers: [
+    MsgService,
     AuthService,
     AuthGuard,
     PessoasGuard,
