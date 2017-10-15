@@ -43,10 +43,11 @@ export class AuthService {
     return this.authState !== null;
   }
 
-  // testar
-  criarUsuario(email: string, senha: string, confirmacaoDeSenha: string) {
+
+  criarUsuario(email: string, senha: string) {
         this.afAuth.auth.createUserWithEmailAndPassword(email, senha)
         .then( user => {
+          this.msgService.showAlert('success', 'Conta criada com sucesso.');
           this.authState = user;
           this.mostrarMenuEmitter.emit(true);
           this.router.navigate(['/home']);
@@ -59,12 +60,22 @@ export class AuthService {
   recuperarSenha(email: string) {
     this.afAuth.auth.sendPasswordResetEmail(email)
     .then(success => {
-        this.msgService.showAlert('info', 'Por Favor verifique sua caixa de email.');
+        this.msgService.showAlert('success', 'Por favor verifique sua caixa de email.');
         return;
     })
     .catch(function (onReject: any, ) {
       console.log(onReject.message);
     });
+  }
+
+  alterarSenha(novaSenha: string) {
+    this.afAuth.auth.currentUser.updatePassword(novaSenha).then(success => {
+      this.msgService.showAlert('success', 'Senha alterada com sucesso.');
+    })
+    .catch(function (onReject: any, ) {
+      console.log(onReject.message);
+    });
+
   }
 
 

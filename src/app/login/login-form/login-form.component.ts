@@ -1,10 +1,10 @@
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
 import { AuthService } from '../../services/auth.service';
 import { MsgService } from '../../services/msg.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { CadastrarSeFormComponent } from '../cadastrar-se-form/cadastrar-se-form.component';
 
 @Component({
   selector: 'app-login-form',
@@ -13,12 +13,14 @@ import { MsgService } from '../../services/msg.service';
 })
 export class LoginFormComponent implements OnInit {
 
+  bsModalRef: BsModalRef;
   formulario: FormGroup;
 
   constructor(
     private authSvc: AuthService,
     private formBuilder: FormBuilder,
-    private msgService: MsgService
+    private msgService: MsgService,
+    private modalService: BsModalService
     ) { }
 
   ngOnInit() {
@@ -47,6 +49,11 @@ export class LoginFormComponent implements OnInit {
       return;
     }
     this.authSvc.recuperarSenha(this.formulario.controls.email.value);
+  }
+
+  CadastrarSe() {
+    this.bsModalRef = this.modalService.show(CadastrarSeFormComponent,
+      {backdrop: false, ignoreBackdropClick: true});
   }
 
   verificaValidTouched(campo: string) {

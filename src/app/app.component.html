@@ -4,22 +4,18 @@
       <div class="navbar-header">
         <a class="navbar-brand" routerLink="/home">WebApp</a>
       </div>
-  
-    
-        <ul class="nav navbar-nav">
-            <li routerLinkActive="active">
-              <a routerLink="/mapa">Mapa</a>
-            </li>
-            <li routerLinkActive="active">
-              <a routerLink="/pessoas">Passageiros</a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
-        </ul>
-        
-        
-
+      <ul class="nav navbar-nav">
+          <li routerLinkActive="active">
+            <a routerLink="/mapa">Mapa</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/pessoas">Passageiros</a>
+          </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a (click)="alterarSenha()"><span class="glyphicon glyphicon-lock"></span> Alterar a Senha</a></li>
+        <li><a (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+      </ul>
     </div>
   </nav>
 <div class="container">

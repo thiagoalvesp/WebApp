@@ -6,7 +6,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
-import { Pessoa } from '../../shared/models/pessoa';
+import { Pessoa } from '../../models/pessoa';
+
 
 
 @Component({

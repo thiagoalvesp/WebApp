@@ -3,7 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2/index';
+
 import { AlertModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
@@ -32,6 +35,7 @@ import { MsgService } from './services/msg.service';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(FirebaseConfig),
     AlertModule.forRoot(),
+    ModalModule.forRoot(),
     AppRoutingModule,
     LoginModule,
     PessoasModule,

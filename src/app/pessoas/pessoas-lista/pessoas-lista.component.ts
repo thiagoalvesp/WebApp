@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { Pessoa } from '../../shared/models/pessoa';
+import { Pessoa } from '../../models/pessoa';
+
 
 
 @Component({

@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Cadastrar-se</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<div class="modal-body">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="form-group" [ngClass]="aplicaCssErro('email')">
+        <label for="email">Nova Senha</label>
+        <input id="email" type="email" class="form-control" formControlName="email" placeholder="email">
+      </div>
+    <div class="form-group"  [ngClass]="aplicaCssErro('senha')">
+      <label for="senha">Nova Senha</label>
+      <input id="senha" type="password" class="form-control" formControlName="senha" placeholder="Senha">
+    </div>
+    <div class="form-group" [ngClass]="aplicaCssErro('confirmacao')">
+      <label for="confirmacao">Confirmação da Nova Senha</label>
+      <input id="confirmacao" type="password" class="form-control" formControlName="confirmacao" placeholder="Confirmação">
+    </div>
+    <button type="submit" class="btn btn-default btn-lg btn-block">
+          Criar nova conta
+    </button>
+
+  </form>
+</div>
