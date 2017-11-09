@@ -1,4 +1,5 @@
 import { FirebaseConfig } from './../environments/firebase.config';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -22,6 +23,7 @@ import { PessoasGuard } from './guards/pessoa.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import { MsgService } from './services/msg.service';
+
 
 
 @NgModule({

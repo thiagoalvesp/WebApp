@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 
+
 @NgModule({
   imports: [
     CommonModule,

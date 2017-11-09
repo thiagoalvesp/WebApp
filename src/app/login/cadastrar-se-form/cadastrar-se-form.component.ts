@@ -12,6 +12,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 export class CadastrarSeFormComponent implements OnInit {
 
   formulario: FormGroup;
+  fechaModal: boolean;
 
   constructor(
     private authSvc: AuthService,
@@ -26,6 +27,13 @@ export class CadastrarSeFormComponent implements OnInit {
       senha: [null, Validators.required],
       confirmacao: [null, Validators.required],
     });
+
+    this.authSvc.fechaModalCadastroDeUsuario.subscribe(
+      fecha => {
+          if (fecha) {
+            this.bsModalRef.hide();
+          }
+       });
   }
 
   onSubmit() {
@@ -37,8 +45,6 @@ export class CadastrarSeFormComponent implements OnInit {
       return;
     }
     this.authSvc.criarUsuario(this.formulario.controls.email.value, this.formulario.controls.email.value);
-    this.bsModalRef.hide();
-
   }
 
   verificaValidTouched(campo: string) {

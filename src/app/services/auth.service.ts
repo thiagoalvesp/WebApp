@@ -11,6 +11,7 @@ export class AuthService {
 
   authState: any = null;
   mostrarMenuEmitter = new EventEmitter<boolean>();
+  fechaModalCadastroDeUsuario = new EventEmitter<boolean>();
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -21,14 +22,16 @@ export class AuthService {
 
   login(email: string, senha: string): void {
 
+    const msgService = this.msgService;
+
     this.afAuth.auth.signInWithEmailAndPassword(email, senha)
       .then( user => {
         this.authState = user;
         this.mostrarMenuEmitter.emit(true);
         this.router.navigate(['/home']);
       })
-      .catch(function (onReject: any, ) {
-        console.log(onReject.message);
+      .catch(function (onReject: any) {
+        msgService.showErrorAlert(onReject.code);
       });
 
 
@@ -44,40 +47,50 @@ export class AuthService {
   }
 
 
-  criarUsuario(email: string, senha: string) {
-        this.afAuth.auth.createUserWithEmailAndPassword(email, senha)
-        .then( user => {
-          this.msgService.showAlert('success', 'Conta criada com sucesso.');
-          this.authState = user;
-          this.mostrarMenuEmitter.emit(true);
-          this.router.navigate(['/home']);
-        })
-        .catch(function (onReject: any, ) {
-          console.log(onReject.message);
-        });
+  criarUsuario(email: string, senha: string): void {
+
+       const msgService = this.msgService;
+
+       this.afAuth.auth.createUserWithEmailAndPassword(email, senha)
+      .then( user => {
+        msgService.showAlert('success', 'Conta criada com sucesso.');
+        this.authState = user;
+        this.mostrarMenuEmitter.emit(true);
+        this.router.navigate(['/home']);
+        this.fechaModalCadastroDeUsuario.emit(true);
+      })
+      .catch(function (onReject: any) {
+        msgService.showErrorAlert(onReject.code);
+      });
+
   }
 
   recuperarSenha(email: string) {
+
+    const msgService = this.msgService;
+
     this.afAuth.auth.sendPasswordResetEmail(email)
     .then(success => {
-        this.msgService.showAlert('success', 'Por favor verifique sua caixa de email.');
-        return;
+        msgService.showAlert('success', 'Por favor verifique sua caixa de email.');
     })
     .catch(function (onReject: any, ) {
-      console.log(onReject.message);
+      msgService.showErrorAlert(onReject.code);
     });
   }
 
   alterarSenha(novaSenha: string) {
+    const msgService = this.msgService;
     this.afAuth.auth.currentUser.updatePassword(novaSenha).then(success => {
-      this.msgService.showAlert('success', 'Senha alterada com sucesso.');
+      msgService.showAlert('success', 'Senha alterada com sucesso.');
     })
     .catch(function (onReject: any, ) {
-      console.log(onReject.message);
+      msgService.showErrorAlert(onReject.code);
     });
 
   }
 
-
+  usuarioLogadoKey() {
+    return this.afAuth.auth.currentUser.uid;
+  }
 
 }

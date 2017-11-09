@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { MapaComponent } from './mapa.component';
 import { MapaGuard } from '../guards/mapa.guard';
 
-
-
 const mapaRoutes = [
     {path: '', component: MapaComponent,
      canActivateChild: [MapaGuard]}

@@ -1,3 +1,18 @@
-<p>
-  mapa works!
-</p>
+<agm-map [latitude]="lat" [longitude]="lng" [streetViewControl]="false">
+  
+   <!-- localização do Motorista 
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  -->
+
+  <!-- Passageiros Proximos da localização do Motorista -->
+  <agm-marker *ngFor="let marker of markers"
+  [latitude]="marker.location[0]" 
+  [longitude]="marker.location[1]"
+  [iconUrl]="'https://firebasestorage.googleapis.com/v0/b/webapp-ae082.appspot.com/o/female.png?alt=media&token=ca097fc0-1753-461a-8474-3e458b3117cb'"
+  >
+    <agm-info-window>
+        {{ marker.distance}} - {{marker.key}}
+    </agm-info-window>
+  </agm-marker>
+
+</agm-map>
